@@ -8,3 +8,14 @@ services:
       - .:/code
     ports:
     - 8000:8000
+    depends_on:
+      - db
+    
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=Hello_Docker
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Amishobjani25
