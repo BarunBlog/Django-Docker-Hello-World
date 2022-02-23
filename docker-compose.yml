@@ -19,3 +19,8 @@ services:
       - POSTGRES_DB=Hello_Docker
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Amishobjani25
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:

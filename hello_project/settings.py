@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Hello_Docker',
         'USER': 'postgres',
-        'PASSWORD': 'password',
+        'PASSWORD': 'Amishobjani25',
         'HOST': 'db',
         'PORT': 5432
     }
