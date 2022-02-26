@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 psycopg2-binary = "==2.9.3"
+whitenoise = "==4.1.4"
 
 [dev-packages]
 
