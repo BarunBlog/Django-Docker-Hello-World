@@ -26,7 +26,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = []
+ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
+
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -127,3 +129,28 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+if ENVIRONMENT == 'production':
+    SECURE_BROWSER_XSS_FILTER = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_SSL_REDIRECT = True
+
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+
+    SECURE_BROWSER_XSS_FILTER = True # To help guard against XSS attacks
+
+    X_FRAME_OPTIONS = 'DENY' # browser will block the resource from loading in a frame no matter which site made the request.
+
+    SECURE_SSL_REDIRECT = True # force all non-HTTPS traffic to be redirected to HTTPS
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_HSTS_SECONDS = 3600
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True # otherwise your site may still be vulnerable via an insecure connection to a subdomain.
+    SECURE_HSTS_PRELOAD = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True # to avoid transmitting the cookie over HTTP accidentally.
+
+    SECURE_REFERRER_POLICY = 'same-origin' # This allows CSRF and internal analytics to work without leaking Referer values to other domains
